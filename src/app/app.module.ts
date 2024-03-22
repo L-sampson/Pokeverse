@@ -6,6 +6,7 @@ import { bootstrapApplication } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -15,7 +16,8 @@ import { HeaderComponent } from './header/header.component';
     CommonModule,
     BrowserModule,
     HttpClientModule,
-    HeaderComponent
+    HeaderComponent,
+    NgxPaginationModule
   ],
   providers : [],
   bootstrap: []

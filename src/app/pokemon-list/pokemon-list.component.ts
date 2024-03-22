@@ -1,29 +1,38 @@
-import { Component , OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PokemonDataService } from '../services/pokemon-data.service';
 import { CommonModule } from '@angular/common';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-pokemon-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgxPaginationModule],
   templateUrl: './pokemon-list.component.html',
-  styleUrl: './pokemon-list.component.css'
+  styleUrl: './pokemon-list.component.css',
 })
 export class PokemonListComponent implements OnInit {
   pokemons: any[] = [];
-  constructor(private dataService: PokemonDataService) {
-  }
+  page = 1;
+  totalPokemons!: number;
+  constructor(private pokemonService: PokemonDataService) {}
 
   ngOnInit(): void {
-    this.dataService.getPokemon()
+    this.getPokemons();
+  }
+
+  getPokemons() {
+    this.pokemonService.getPokemon(12,this.page + 0)
     .subscribe((response: any) => {
+      this.totalPokemons = response.count;
+
       response.results.forEach((result: any) => {
-        this.dataService.getPokemonData(result.name)
-          .subscribe((uniquePokemon: any) =>{
+        this.pokemonService
+          .getPokemonData(result.name)
+          .subscribe((uniquePokemon: any) => {
             this.pokemons.push(uniquePokemon);
             console.log(this.pokemons);
-          })
-      })
-    })
+          });
+      });
+    });
   }
 }

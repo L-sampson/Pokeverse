@@ -15,10 +15,24 @@
   text-align: center;
 }
 
+.pokemon-grid .box:hover {
+  box-shadow: 0 0 10px 5px rgba(31, 122, 140, 0.8);
+}
+
 .pokemon-grid .box img {
   max-width: 100px;
   display: block;
   margin: auto;
+}
+
+.btn button {
+  background-color: rgb(31, 122, 140);
+  color: white;
+  margin: auto;
+}
+
+.btn button:hover {
+  box-shadow: 0 0 10px 5px rgb(224, 133, 51);
 }
 
 pagination-controls {

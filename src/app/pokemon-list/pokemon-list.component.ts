@@ -22,18 +22,19 @@ export class PokemonListComponent implements OnInit {
   }
 
   getPokemons() {
-    this.pokemonService.getPokemon(12,this.page + 0)
-    .subscribe((response: any) => {
-      this.totalPokemons = response.count;
+    this.pokemonService
+      .getPokemon(12, this.page + 0)
+      .subscribe((response: any) => {
+        this.totalPokemons = response.count;
 
-      response.results.forEach((result: any) => {
-        this.pokemonService
-          .getPokemonData(result.name)
-          .subscribe((uniquePokemon: any) => {
-            this.pokemons.push(uniquePokemon);
-            console.log(this.pokemons);
-          });
+        response.results.forEach((result: any) => {
+          this.pokemonService
+            .getPokemonData(result.name)
+            .subscribe((uniquePokemon: any) => {
+              this.pokemons.push(uniquePokemon);
+              console.log(this.pokemons);
+            });
+        });
       });
-    });
   }
 }

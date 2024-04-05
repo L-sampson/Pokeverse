@@ -1,4 +1,17 @@
-<div class="pokemon-sqaud">
-<h3>Pokemon Squad</h3>
-<p>Here is your current team</p>
+<div class="squad-grid">
+<mat-card class="squad-card" *ngFor="let pokemon of squad">
+<mat-card-header>
+    <img [src]="pokemon.sprites?.front_default" class="avatar-image" />
+    <mat-card-title><p>{{pokemon.name}}</p></mat-card-title>
+    <mat-card-subtitle>{{pokemon.types?.[0]?.type?.name}}</mat-card-subtitle>
+</mat-card-header>
+<mat-card-content>
+    <p><b>Hp:</b> {{ pokemon.stats?.[0]?.base_stat }}</p>
+    <p><b>Attack:</b> {{ pokemon.stats?.[1]?.base_stat }}</p>
+    <p><b>Defense:</b> {{ pokemon.stats?.[2]?.base_stat }}</p>
+</mat-card-content>
+<mat-card-actions>
+    <button mat-button class="orange-button">REMOVE</button>
+  </mat-card-actions>
+</mat-card>
 </div>

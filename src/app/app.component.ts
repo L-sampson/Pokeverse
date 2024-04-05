@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
-import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
-import { SquadListComponent } from './squad-list/squad-list.component';
+import { SquadListComponent } from './components/squad-list/squad-list.component';
+import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
 
 @Component({
   selector: 'app-root',
@@ -13,4 +13,9 @@ import { SquadListComponent } from './squad-list/squad-list.component';
 })
 export class AppComponent {
   title = 'Pokeverse';
+SquadListComponent: any;
+PokemonListComponent: any;
+//  handleAddToSquad(pokemon: any) {
+//   console.log("Pokemon added to squad: ", pokemon.name)
+//  }
 }

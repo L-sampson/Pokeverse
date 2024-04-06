@@ -1,4 +1,5 @@
 <!--Pokemon Grid-->
+<app-header [isBattleButtonReady]="isBattleButtonReady"></app-header>
 <app-squad-list [squad]="squad"></app-squad-list>
 <div class="pokemon-grid">
   <div
@@ -18,7 +19,7 @@
     <p><b>Attack:</b> {{ pokemon.stats[1].base_stat }}</p>
     <p><b>Special Attack:</b> {{ pokemon.stats[3].base_stat }}</p>
     <div class="btn">
-      <button mat-button (click) ="addPokemonToSquad(pokemon)">Add</button>
+      <button mat-button (click)="addPokemonToSquad(pokemon)">Add</button>
     </div>
   </div>
 </div>

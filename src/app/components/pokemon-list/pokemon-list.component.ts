@@ -5,20 +5,28 @@ import { MatButtonModule } from '@angular/material/button';
 import { PokemonDataService } from '../../services/pokemon-data.service';
 import { SquadListComponent } from '../squad-list/squad-list.component';
 import { Pokemon } from '../../interfaces/pokemon';
+import { HeaderComponent } from "../header/header.component";
 
 @Component({
-  selector: 'app-pokemon-list',
-  standalone: true,
-  imports: [CommonModule, NgxPaginationModule, MatButtonModule, SquadListComponent],
-  templateUrl: './pokemon-list.component.html',
-  styleUrl: './pokemon-list.component.css',
+    selector: 'app-pokemon-list',
+    standalone: true,
+    templateUrl: './pokemon-list.component.html',
+    styleUrl: './pokemon-list.component.css',
+    imports: [
+        CommonModule,
+        NgxPaginationModule,
+        MatButtonModule,
+        SquadListComponent,
+        HeaderComponent
+    ]
 })
 export class PokemonListComponent implements OnInit {
-  @Output() addToSquad: EventEmitter<Pokemon> = new EventEmitter;
+  @Output() addToSquad: EventEmitter<Pokemon> = new EventEmitter();
   pokemons: any[] = [];
-  squad: Pokemon[] = [];
+  squad = new Set<Pokemon>();
   page = 1;
   totalPokemons!: number;
+  isBattleButtonReady = false;
   constructor(private pokemonService: PokemonDataService) {}
 
   ngOnInit(): void {
@@ -41,13 +49,19 @@ export class PokemonListComponent implements OnInit {
       });
   }
 
-  addPokemonToSquad(pokemon:Pokemon) {
-    if(this.squad.length < 6) {
-      this.squad.push(pokemon);
-      console.log("Added Pokemon to Squad: ", pokemon.name);
-      console.log(this.squad.length);
-    } else {
-      console.log("Error, squad list cannot exceed 6 pokemon");
+  addPokemonToSquad(pokemon: Pokemon) {
+    if (this.squad.size < 6 && !this.squad.has(pokemon)) {
+      this.squad.add(pokemon);
+      // alert(`Added Pokemon to Squad: ${pokemon.name}, you have ${6-this.squad.size} remaining spots avaiable.`);
+      this.addToSquad.emit(pokemon);
+    } else if (this.squad.has(pokemon)) {
+      alert(
+        `Please choose another pokemon. ${pokemon.name} is already on your squad.`
+      );
+    }
+    if (this.squad.size > 5) {
+      this.isBattleButtonReady = true;
+      alert('No remaining spots available');
     }
   }
 }

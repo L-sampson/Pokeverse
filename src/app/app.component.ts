@@ -9,13 +9,13 @@ import { PokemonListComponent } from './components/pokemon-list/pokemon-list.com
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  imports: [RouterOutlet, HeaderComponent, PokemonListComponent, SquadListComponent],
+  imports: [
+    RouterOutlet,
+    HeaderComponent,
+    PokemonListComponent,
+    SquadListComponent,
+  ],
 })
 export class AppComponent {
   title = 'Pokeverse';
-SquadListComponent: any;
-PokemonListComponent: any;
-//  handleAddToSquad(pokemon: any) {
-//   console.log("Pokemon added to squad: ", pokemon.name)
-//  }
 }

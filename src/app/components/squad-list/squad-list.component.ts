@@ -1,12 +1,7 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { Component, EventEmitter, Input } from '@angular/core';
 import { Pokemon } from '../../interfaces/pokemon';
 import { CommonModule } from '@angular/common';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -16,14 +11,15 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './squad-list.component.html',
   styleUrl: './squad-list.component.css',
 })
-export class SquadListComponent implements OnInit {
-  @Input() squad: Pokemon[] = [];
+export class SquadListComponent {
+  @Input() squad: Set<Pokemon> = new Set<Pokemon>();
   @Input() addToSquad: EventEmitter<Pokemon> = new EventEmitter();
 
-
-  ngOnInit() {
-    this.addToSquad.subscribe((pokemon: Pokemon) => {
-      console.log("Pokemon added:", pokemon.name);
-    });
+  removePokemonFromSquad(pokemon: Pokemon) {
+    if (this.squad.size > 0) {
+      this.squad.delete(pokemon);
+    } else {
+      console.log('Could not find pokemon in squad list');
+    }
   }
-  }
+}

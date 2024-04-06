@@ -11,7 +11,7 @@
     <p><b>Defense:</b> {{ pokemon.stats?.[2]?.base_stat }}</p>
 </mat-card-content>
 <mat-card-actions>
-    <button mat-button class="orange-button">REMOVE</button>
+    <button mat-button class="orange-button" (click)="removePokemonFromSquad(pokemon)">REMOVE</button>
   </mat-card-actions>
 </mat-card>
 </div>

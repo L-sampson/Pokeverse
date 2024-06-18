@@ -5,20 +5,20 @@ import { MatButtonModule } from '@angular/material/button';
 import { PokemonDataService } from '../../services/pokemon-data.service';
 import { SquadListComponent } from '../squad-list/squad-list.component';
 import { Pokemon } from '../../interfaces/pokemon';
-import { HeaderComponent } from "../header/header.component";
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
-    selector: 'app-pokemon-list',
-    standalone: true,
-    templateUrl: './pokemon-list.component.html',
-    styleUrl: './pokemon-list.component.css',
-    imports: [
-        CommonModule,
-        NgxPaginationModule,
-        MatButtonModule,
-        SquadListComponent,
-        HeaderComponent
-    ]
+  selector: 'app-pokemon-list',
+  standalone: true,
+  templateUrl: './pokemon-list.component.html',
+  styleUrl: './pokemon-list.component.css',
+  imports: [
+    CommonModule,
+    NgxPaginationModule,
+    MatButtonModule,
+    SquadListComponent,
+    HeaderComponent,
+  ],
 })
 export class PokemonListComponent implements OnInit {
   @Output() addToSquad: EventEmitter<Pokemon> = new EventEmitter();
